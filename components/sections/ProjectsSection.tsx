@@ -11,6 +11,7 @@ import {
   FolderOpen,
   Filter,
 } from "lucide-react";
+import Magnetic from "@/components/ui/Magnetic";
 
 type ProjectType = "all" | "web" | "mobile";
 
@@ -187,7 +188,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.08 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="glass-card-hover rounded-2xl overflow-hidden group flex flex-col"
+      className="glass-card-hover rounded-[1.75rem] overflow-hidden group flex flex-col"
     >
       {/* Image header */}
       <div className={`relative h-48 bg-gradient-to-br ${project.color} overflow-hidden flex-shrink-0`}>
@@ -198,6 +199,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           className="object-cover opacity-60 mix-blend-overlay group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
         />
         <div className="absolute inset-0 bg-noise opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.28),transparent_40%)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
         {/* Floating type badge */}
@@ -270,8 +272,9 @@ export default function ProjectsSection() {
   const filtered = filter === "all" ? projects : projects.filter((p) => p.type === filter);
 
   return (
-    <section id="projects" className="section-padding bg-surface-1 relative overflow-hidden">
+    <section id="projects" className="section-shell section-padding bg-transparent relative overflow-hidden">
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-brand-100/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-[-4rem] h-80 w-80 rounded-full bg-emerald-100/18 blur-3xl pointer-events-none" />
 
       <div className="container-custom" ref={ref}>
         <motion.div
@@ -295,20 +298,21 @@ export default function ProjectsSection() {
             </div>
 
             {/* Filter */}
-            <div className="flex items-center gap-2 bg-white rounded-xl p-1 border border-surface-4 shadow-soft">
+            <div className="flex items-center gap-2 rounded-2xl border border-white/65 bg-white/55 p-1.5 shadow-[0_18px_46px_rgba(6,95,70,0.08)] backdrop-blur-2xl">
               <Filter size={14} className="text-ink-muted ml-2" />
               {filters.map((f) => (
-                <button
-                  key={f.value}
-                  onClick={() => setFilter(f.value)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    filter === f.value
-                      ? "bg-brand-600 text-white shadow-brand"
-                      : "text-ink-secondary hover:text-ink-primary"
-                  }`}
-                >
-                  {f.label}
-                </button>
+                <Magnetic key={f.value} strength={10}>
+                  <button
+                    onClick={() => setFilter(f.value)}
+                    className={`rounded-xl px-4 py-2 text-sm font-medium transition-all ${
+                      filter === f.value
+                        ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-brand"
+                        : "text-ink-secondary hover:bg-white/80 hover:text-ink-primary"
+                    }`}
+                  >
+                    {f.label}
+                  </button>
+                </Magnetic>
               ))}
             </div>
           </div>
@@ -351,7 +355,7 @@ export default function ProjectsSection() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5 + i * 0.08 }}
-                    className={`bg-white rounded-2xl p-5 border border-surface-4 transition-all duration-300 shadow-soft ${hoverClass}`}
+                    className={`glass-card-hover rounded-[1.5rem] p-5 ${hoverClass}`}
                   >
                     <h4 className="font-semibold text-ink-primary mb-2 text-sm">{p.title}</h4>
                     <p className="text-xs text-ink-tertiary leading-relaxed mb-3">{p.description}</p>

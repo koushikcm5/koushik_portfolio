@@ -106,7 +106,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-body antialiased bg-white text-ink-primary">
+      <body className="bg-transparent font-body antialiased text-ink-primary">
         {children}
       </body>
     </html>

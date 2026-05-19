@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUp, Github, Linkedin, MessageCircle, ExternalLink, Heart } from "lucide-react";
+import Magnetic from "@/components/ui/Magnetic";
 
 const quickLinks = [
   { label: "About", href: "#about" },
@@ -25,13 +26,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-ink-primary text-white relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-ink-primary text-white">
       {/* Top border gradient */}
       <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
 
       {/* Subtle bg */}
       <div className="absolute inset-0 bg-noise opacity-10" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-950/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.24),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_25%)]" />
 
       <div className="container-custom relative py-16">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
@@ -46,16 +48,17 @@ export default function Footer() {
             </p>
             <div className="flex gap-2">
               {social.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-emerald-600 hover:text-white transition-all"
-                >
-                  <s.icon size={15} />
-                </a>
+                <Magnetic key={s.label} strength={10}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-white/60 transition-all hover:border-emerald-400/40 hover:bg-emerald-600 hover:text-white"
+                  >
+                    <s.icon size={15} />
+                  </a>
+                </Magnetic>
               ))}
             </div>
           </div>
@@ -108,17 +111,19 @@ export default function Footer() {
             in Salem, India.
           </p>
 
-          <motion.button
-            onClick={scrollToTop}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 text-xs font-medium text-white/40 hover:text-emerald-400 transition-colors group"
-          >
-            Back to top
-            <span className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
-              <ArrowUp size={13} />
-            </span>
-          </motion.button>
+          <Magnetic strength={12}>
+            <motion.button
+              onClick={scrollToTop}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="group flex items-center gap-2 text-xs font-medium text-white/40 transition-colors hover:text-emerald-400"
+            >
+              Back to top
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 transition-colors group-hover:bg-emerald-600">
+                <ArrowUp size={13} />
+              </span>
+            </motion.button>
+          </Magnetic>
         </div>
       </div>
     </footer>

@@ -102,8 +102,9 @@ export default function SkillsSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="section-padding bg-white relative overflow-hidden">
+    <section id="skills" className="section-shell section-padding bg-transparent relative overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-brand-50/60 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute right-[-6rem] top-1/3 h-72 w-72 rounded-full bg-teal-100/14 blur-3xl pointer-events-none" />
 
       <div className="container-custom" ref={ref}>
         <motion.div
@@ -132,7 +133,7 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 25 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: ci * 0.1 }}
-              className="glass-card rounded-2xl p-6"
+              className="glass-card-hover rounded-[1.75rem] p-6"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div
@@ -164,7 +165,7 @@ export default function SkillsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 p-8 bg-surface-1 rounded-2xl border border-surface-3"
+          className="glass-card-hover mt-12 rounded-[1.75rem] p-8"
         >
           <p className="text-xs font-semibold uppercase tracking-widest text-ink-muted mb-5 text-center">
             All Technologies

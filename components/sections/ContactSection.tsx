@@ -11,8 +11,8 @@ import {
   MapPin,
   CheckCircle2,
   AlertCircle,
-  Phone,
 } from "lucide-react";
+import Magnetic from "@/components/ui/Magnetic";
 
 const projectTypes = [
   "Web Application",
@@ -58,7 +58,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="section-padding bg-surface-1 relative overflow-hidden">
+    <section id="contact" className="section-shell section-padding bg-transparent relative overflow-hidden">
       <div className="absolute top-0 right-0 w-80 h-80 bg-brand-100/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-100/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -116,7 +116,7 @@ export default function ContactSection() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="glass-card rounded-2xl p-5 flex items-center gap-4 hover:shadow-glass-lg transition-all"
+                className="glass-card-hover rounded-[1.5rem] p-5 flex items-center gap-4"
               >
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center border ${item.color} flex-shrink-0`}>
                   <item.icon size={18} />
@@ -143,7 +143,7 @@ export default function ContactSection() {
             ))}
 
             {/* Social Links */}
-            <div className="glass-card rounded-2xl p-5">
+            <div className="glass-card-hover rounded-[1.5rem] p-5">
               <p className="text-xs font-semibold uppercase tracking-widest text-ink-muted mb-4">
                 Social Profiles
               </p>
@@ -191,7 +191,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="lg:col-span-3"
           >
-            <div className="glass-card rounded-2xl p-8">
+            <div className="glass-card-hover rounded-[1.75rem] p-8">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
@@ -205,8 +205,8 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="Name"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-surface-1 border border-surface-4 text-sm text-ink-primary placeholder:text-ink-muted focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400 transition-all"
-                    />
+                    className="w-full rounded-2xl border border-white/65 bg-white/70 px-4 py-3 text-sm text-ink-primary placeholder:text-ink-muted transition-all focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300 backdrop-blur-xl"
+                  />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-ink-secondary mb-2">
@@ -219,8 +219,8 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="you@example.com"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-surface-1 border border-surface-4 text-sm text-ink-primary placeholder:text-ink-muted focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400 transition-all"
-                    />
+                    className="w-full rounded-2xl border border-white/65 bg-white/70 px-4 py-3 text-sm text-ink-primary placeholder:text-ink-muted transition-all focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300 backdrop-blur-xl"
+                  />
                   </div>
                 </div>
 
@@ -232,7 +232,7 @@ export default function ContactSection() {
                     name="projectType"
                     value={form.projectType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-surface-1 border border-surface-4 text-sm text-ink-primary focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400 transition-all appearance-none"
+                    className="w-full appearance-none rounded-2xl border border-white/65 bg-white/70 px-4 py-3 text-sm text-ink-primary transition-all focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300 backdrop-blur-xl"
                   >
                     <option value="">Select project type...</option>
                     {projectTypes.map((t) => (
@@ -252,7 +252,7 @@ export default function ContactSection() {
                     placeholder="Tell me about your project..."
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-surface-1 border border-surface-4 text-sm text-ink-primary placeholder:text-ink-muted focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400 transition-all resize-none"
+                    className="w-full resize-none rounded-2xl border border-white/65 bg-white/70 px-4 py-3 text-sm text-ink-primary placeholder:text-ink-muted transition-all focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300 backdrop-blur-xl"
                   />
                 </div>
 
@@ -276,22 +276,24 @@ export default function ContactSection() {
                 )}
 
                 <div className="flex gap-3">
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="btn-primary flex-1 justify-center"
-                  >
-                    {status === "sending" ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send Message <Send size={15} />
-                      </>
-                    )}
-                  </button>
+                  <Magnetic className="flex-1" strength={14}>
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="btn-primary flex w-full justify-center"
+                    >
+                      {status === "sending" ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message <Send size={15} />
+                        </>
+                      )}
+                    </button>
+                  </Magnetic>
 
                 </div>
               </form>

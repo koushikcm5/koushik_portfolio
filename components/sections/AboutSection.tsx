@@ -39,9 +39,10 @@ export default function AboutSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="section-padding bg-surface-1 relative overflow-hidden">
+    <section id="about" className="section-shell section-padding bg-transparent relative overflow-hidden">
       {/* Decorative */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-100/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-12 left-[-4rem] h-72 w-72 rounded-full bg-teal-100/18 blur-3xl pointer-events-none" />
 
       <div className="container-custom" ref={ref}>
         <motion.div
@@ -102,7 +103,7 @@ export default function AboutSection() {
                 {extras.map((item) => (
                   <span
                     key={item.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-medium bg-white border border-surface-4 text-ink-secondary hover:border-emerald-300 hover:text-emerald-600 transition-colors shadow-soft"
+                    className="inline-flex items-center gap-1.5 rounded-2xl border border-white/60 bg-white/60 px-3 py-1.5 text-sm font-medium text-ink-secondary shadow-[0_14px_32px_rgba(6,95,70,0.06)] transition-colors hover:border-emerald-300 hover:text-emerald-600 backdrop-blur-xl"
                   >
                     <item.icon size={13} />
                     {item.label}
@@ -135,7 +136,7 @@ export default function AboutSection() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-                    className={`glass-card rounded-2xl p-6 text-center border-white/60 transition-all duration-300 hover:shadow-glass-lg ${theme.border}`}
+                    className={`glass-card-hover rounded-[1.75rem] p-6 text-center ${theme.border}`}
                   >
                     <div className={`font-display font-bold text-3xl mb-1 ${theme.text}`}>
                       <AnimatedCounter value={stat.value} />
@@ -147,7 +148,7 @@ export default function AboutSection() {
             </div>
 
             {/* Profile card */}
-            <div className="glass-card rounded-2xl p-6 relative overflow-hidden">
+            <div className="glass-card-hover rounded-[1.75rem] p-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/30 rounded-full blur-2xl" />
               <div className="relative">
                 <div className="flex items-start gap-4">

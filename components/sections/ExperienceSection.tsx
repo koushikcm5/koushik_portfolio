@@ -26,8 +26,9 @@ export default function ExperienceSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="section-padding bg-white relative overflow-hidden">
+    <section id="experience" className="section-shell section-padding bg-transparent relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-[-6rem] h-80 w-80 rounded-full bg-teal-100/15 blur-3xl pointer-events-none" />
 
       <div className="container-custom" ref={ref}>
         <motion.div
@@ -55,10 +56,11 @@ export default function ExperienceSection() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="relative"
         >
-          <div className="glass-card rounded-3xl overflow-hidden">
+          <div className="glass-card-hover rounded-[2rem] overflow-hidden">
             {/* Header band */}
             <div className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 p-8 md:p-10 overflow-hidden">
               <div className="absolute inset-0 bg-noise opacity-30" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.32),transparent_38%)]" />
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
               <div className="relative flex flex-wrap items-start justify-between gap-6">
                 <div>
@@ -84,7 +86,7 @@ export default function ExperienceSection() {
                   href="https://growaitech.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/15 backdrop-blur-sm text-white text-sm font-medium rounded-xl border border-white/20 hover:bg-white/25 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-white/15 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/25"
                 >
                   Visit Website <ExternalLink size={14} />
                 </a>
@@ -145,7 +147,7 @@ export default function ExperienceSection() {
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={inView ? { opacity: 1, scale: 1 } : {}}
                           transition={{ delay: 0.35 + i * 0.08 }}
-                          className={`bg-surface-1 rounded-2xl p-5 border border-surface-3 transition-all duration-300 hover:shadow-soft ${theme.border} group`}
+                          className={`glass-card-hover rounded-[1.5rem] p-5 ${theme.border} group`}
                         >
                           <div className={`font-display font-bold text-2xl group-hover:scale-105 transition-transform ${theme.text}`}>
                             {stat.value}
@@ -157,7 +159,7 @@ export default function ExperienceSection() {
                   </div>
 
                   {/* Timeline */}
-                  <div className="mt-6 p-5 bg-surface-1 rounded-2xl border border-surface-3">
+                  <div className="glass-card-hover mt-6 rounded-[1.5rem] p-5">
                     <p className="text-xs font-semibold uppercase tracking-widest text-ink-muted mb-3">
                       Milestones
                     </p>

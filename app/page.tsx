@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
@@ -13,6 +14,10 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import MouseGlow from "@/components/ui/MouseGlow";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
+const PremiumBackground = dynamic(() => import("@/components/ui/PremiumBackground"), {
+  ssr: false,
+});
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
@@ -24,17 +29,20 @@ export default function Home() {
   if (loading) return <LoadingScreen />;
 
   return (
-    <main className="relative min-h-screen bg-white overflow-x-hidden">
+    <main className="site-shell relative min-h-screen overflow-x-hidden">
+      <PremiumBackground />
       <MouseGlow />
       <ScrollProgress />
-      <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <SkillsSection />
-      <ContactSection />
-      <Footer />
+      <div className="relative z-10">
+        <Navbar />
+        <HeroSection />
+        <AboutSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <ContactSection />
+        <Footer />
+      </div>
     </main>
   );
 }

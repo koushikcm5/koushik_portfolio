@@ -10,17 +10,29 @@ export default function MouseGlow() {
       if (glowRef.current) {
         glowRef.current.style.left = `${e.clientX}px`;
         glowRef.current.style.top = `${e.clientY}px`;
+        glowRef.current.style.opacity = "1";
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (glowRef.current) {
+        glowRef.current.style.opacity = "0";
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, []);
 
   return (
     <div
       ref={glowRef}
       className="mouse-glow hidden lg:block"
+      style={{ opacity: 0 }}
       aria-hidden="true"
     />
   );

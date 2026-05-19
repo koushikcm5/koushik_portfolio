@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Download, ChevronDown, MapPin, Zap } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight, ChevronDown, MapPin, Zap } from "lucide-react";
+import Magnetic from "@/components/ui/Magnetic";
 
 const techPills = [
   "React JS", "Next JS", "Spring Boot", "React Native",
@@ -27,6 +29,14 @@ const itemVariants = {
 };
 
 export default function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const orbY = useTransform(scrollYProgress, [0, 1], [0, -110]);
+
   const handleScroll = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -34,27 +44,52 @@ export default function HeroSection() {
 
   return (
     <section
+      ref={ref}
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white"
+      className="section-shell relative flex min-h-screen flex-col justify-center overflow-hidden bg-transparent"
     >
       {/* Background layers */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-100" />
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/40 via-transparent to-teal-50/30" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/45 via-white/10 to-teal-50/30" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.88),transparent_26%),radial-gradient(circle_at_80%_20%,rgba(16,185,129,0.12),transparent_28%)]" />
 
       {/* Floating blobs */}
       <motion.div
+        style={{ y: orbY }}
         animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-[10%] w-96 h-96 bg-emerald-200/15 rounded-full blur-3xl pointer-events-none"
+        className="absolute top-20 right-[10%] h-96 w-96 rounded-full bg-emerald-200/15 blur-3xl pointer-events-none"
       />
       <motion.div
         animate={{ y: [0, 20, 0], scale: [1, 1.08, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-20 left-[5%] w-72 h-72 bg-teal-200/15 rounded-full blur-3xl pointer-events-none"
+        className="absolute bottom-20 left-[5%] h-72 w-72 rounded-full bg-teal-200/15 blur-3xl pointer-events-none"
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-100/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green-100/10 blur-3xl pointer-events-none" />
+      <div className="absolute right-[8%] top-[18%] hidden h-72 w-72 xl:block">
+        <motion.div
+          animate={{ y: [0, -16, 0], rotate: [0, 6, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-6 rounded-[2.5rem] border border-white/55 bg-white/16 shadow-[0_22px_60px_rgba(6,95,70,0.14)] backdrop-blur-3xl"
+        />
+        <motion.div
+          animate={{ y: [0, 14, 0], rotate: [0, -8, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-14 rounded-[2.25rem] border border-emerald-200/60 bg-gradient-to-br from-white/70 to-emerald-100/20 shadow-[0_18px_54px_rgba(16,185,129,0.16)] backdrop-blur-3xl"
+        />
+        <motion.div
+          animate={{ y: [0, -10, 0], x: [0, 8, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute right-2 top-10 h-20 w-20 rounded-[1.5rem] border border-white/60 bg-white/20 backdrop-blur-2xl"
+        />
+        <motion.div
+          animate={{ y: [0, 12, 0], x: [0, -10, 0] }}
+          transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-6 left-4 h-24 w-24 rounded-[1.75rem] border border-emerald-200/70 bg-gradient-to-br from-emerald-100/40 to-white/20 backdrop-blur-3xl"
+        />
+      </div>
 
-      <div className="container-custom relative z-10 pt-24">
+      <motion.div style={{ y: contentY }} className="container-custom relative z-10 pt-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -116,18 +151,22 @@ export default function HeroSection() {
             variants={itemVariants}
             className="flex flex-wrap gap-3 mb-16"
           >
-            <button
-              onClick={() => handleScroll("#projects")}
-              className="btn-primary"
-            >
-              View Projects <ArrowRight size={16} />
-            </button>
-            <button
-              onClick={() => handleScroll("#contact")}
-              className="btn-secondary"
-            >
-              Contact Me
-            </button>
+            <Magnetic strength={16}>
+              <button
+                onClick={() => handleScroll("#projects")}
+                className="btn-primary min-w-[170px]"
+              >
+                View Projects <ArrowRight size={16} />
+              </button>
+            </Magnetic>
+            <Magnetic strength={14}>
+              <button
+                onClick={() => handleScroll("#contact")}
+                className="btn-secondary min-w-[150px]"
+              >
+                Contact Me
+              </button>
+            </Magnetic>
 
           </motion.div>
 
@@ -139,9 +178,10 @@ export default function HeroSection() {
             </p>
             {/* Marquee wrapper */}
             <div className="overflow-hidden relative">
-              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-              <div className="flex gap-3 animate-marquee w-max">
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white via-white/90 to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white via-white/90 to-transparent z-10 pointer-events-none" />
+              <div className="rounded-[1.75rem] border border-white/60 bg-white/45 px-4 py-4 shadow-[0_18px_54px_rgba(6,95,70,0.08)] backdrop-blur-2xl">
+                <div className="flex w-max gap-3 animate-marquee">
                 {[...techPills, ...techPills].map((tech, i) => (
                   <span
                     key={i}
@@ -150,11 +190,12 @@ export default function HeroSection() {
                     {tech}
                   </span>
                 ))}
+                </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.button
