@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://koushikm.dev",
+    url: "https://mkoushik.me",
     title: "Koushik M — Full Stack & Mobile Developer",
     description:
       "Co-Founder of Grow AI Tech. Building scalable digital products with modern technologies.",
@@ -81,7 +81,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Koushik M",
-              url: "https://koushikm.dev",
+              url: "https://mkoushik.me",
               sameAs: [
                 "https://linkedin.com/in/koushikm",
                 "https://github.com/koushikm",

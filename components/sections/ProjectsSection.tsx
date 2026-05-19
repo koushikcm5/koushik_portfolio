@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
@@ -20,6 +21,7 @@ interface Project {
   category: string;
   description: string;
   url?: string;
+  image: string;
   tech: string[];
   features: string[];
   color: string;
@@ -34,6 +36,7 @@ const projects: Project[] = [
     category: "Mobile Application",
     description:
       "A complete yoga tracking and monitoring application designed for yoga practice management, user progress tracking, session monitoring, and wellness analytics.",
+    image: "/projects/yoga_app.png",
     tech: ["React Native", "Spring Boot", "MySQL"],
     features: [
       "Real-time Progress Tracking",
@@ -54,6 +57,7 @@ const projects: Project[] = [
     description:
       "Business enhancement platform focused on improving digital presence and customer engagement for modern enterprises.",
     url: "https://impactmaker.in",
+    image: "/projects/business_website.png",
     tech: ["React JS"],
     features: [
       "SEO Optimized Architecture",
@@ -73,6 +77,7 @@ const projects: Project[] = [
     description:
       "Professional corporate website designed for business branding, digital presence, and showcasing services to potential clients.",
     url: "https://www.femtechsolutionslm.co.in",
+    image: "/projects/corporate_website.png",
     tech: ["React JS"],
     features: [
       "Corporate UI Design",
@@ -92,6 +97,7 @@ const projects: Project[] = [
     description:
       "Modern awards platform developed for event management, nominee handling, and public engagement with real-time data capabilities.",
     url: "https://www.kprlegacyawards.com",
+    image: "/projects/awards_platform.png",
     tech: ["React JS", "PostgreSQL", "Supabase"],
     features: [
       "Dynamic Nomination System",
@@ -111,6 +117,7 @@ const projects: Project[] = [
     description:
       "Modern business directory platform for discovering and managing businesses digitally with advanced search and filtering capabilities.",
     url: "https://bizdir-rust.vercel.app",
+    image: "/projects/directory_platform.png",
     tech: ["React JS", "Firebase"],
     features: [
       "Business Listings",
@@ -129,6 +136,7 @@ const projects: Project[] = [
     category: "Android Application",
     description:
       "A matrimonial mobile application currently available on Play Store designed for community-based matchmaking with secure profiles.",
+    image: "/projects/matrimonial_app.png",
     tech: ["Flutter", "Firebase"],
     features: [
       "Secure User Profiles",
@@ -181,16 +189,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       onHoverEnd={() => setHovered(false)}
       className="glass-card-hover rounded-2xl overflow-hidden group flex flex-col"
     >
-      {/* Color header */}
-      <div className={`relative h-40 bg-gradient-to-br ${project.color} overflow-hidden flex-shrink-0`}>
+      {/* Image header */}
+      <div className={`relative h-48 bg-gradient-to-br ${project.color} overflow-hidden flex-shrink-0`}>
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover opacity-60 mix-blend-overlay group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+        />
         <div className="absolute inset-0 bg-noise opacity-30" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          {project.type === "mobile" ? (
-            <Smartphone size={52} className="text-white/30" />
-          ) : (
-            <Globe size={52} className="text-white/30" />
-          )}
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
         {/* Floating type badge */}
         <div className="absolute top-4 left-4">

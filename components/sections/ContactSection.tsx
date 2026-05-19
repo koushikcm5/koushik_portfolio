@@ -95,8 +95,8 @@ export default function ContactSection() {
               {
                 icon: Mail,
                 label: "Email",
-                value: "koushik@growaitech.com",
-                href: "mailto:koushik@growaitech.com",
+                value: "koushikkaalai123@gmail.com",
+                href: "mailto:koushikkaalai123@gmail.com",
                 color: "text-green-600 bg-green-50 border-green-100",
               },
               {
