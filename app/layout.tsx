@@ -18,8 +18,12 @@ export const metadata: Metadata = {
     "Android Developer",
     "React Native Developer",
   ],
-  authors: [{ name: "Koushik M", url: "https://growaitech.com" }],
+  authors: [{ name: "Koushik M", url: "https://mkoushik.me" }],
   creator: "Koushik M",
+  metadataBase: new URL("https://mkoushik.me"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
