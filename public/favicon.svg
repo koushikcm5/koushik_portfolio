@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  <!-- Dark background -->
+  <rect width="128" height="128" rx="30" fill="#0a0a0f"/>
+  <!-- Subtle glow ring -->
+  <rect x="3" y="3" width="122" height="122" rx="27" fill="none" stroke="url(#ring)" stroke-width="2.5"/>
+  <!-- K.M text -->
+  <text
+    x="64" y="76"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="'Syne','DM Sans',system-ui,sans-serif"
+    font-size="48"
+    font-weight="800"
+    fill="url(#g)"
+    letter-spacing="-1"
+  >K<tspan fill="#10b981">.</tspan>M</text>
+</svg>
