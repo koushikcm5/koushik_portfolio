@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Koushik M — Full Stack & Mobile Developer | Co-Founder at Grow AI Tech",
+  title: {
+    default: "Koushik M — Full Stack & Mobile Developer | Co-Founder at Grow AI Tech",
+    template: "%s | Koushik M",
+  },
   description:
     "Koushik M is a Full Stack Developer and Android Developer, Co-Founder of Grow AI Tech. Building scalable web and mobile applications with React JS, Next JS, Spring Boot, Flutter, and more.",
   keywords: [
@@ -17,9 +20,12 @@ export const metadata: Metadata = {
     "Salem Tamil Nadu",
     "Android Developer",
     "React Native Developer",
+    "SaaS Builder",
+    "Software Engineer Salem",
   ],
   authors: [{ name: "Koushik M", url: "https://mkoushik.me" }],
   creator: "Koushik M",
+  publisher: "Koushik M",
   metadataBase: new URL("https://mkoushik.me"),
   alternates: {
     canonical: "/",
@@ -28,16 +34,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://mkoushik.me",
-    title: "Koushik M — Full Stack & Mobile Developer",
+    title: "Koushik M — Full Stack & Mobile Developer | Co-Founder at Grow AI Tech",
     description:
-      "Co-Founder of Grow AI Tech. Building scalable digital products with modern technologies.",
+      "Co-Founder of Grow AI Tech. Building scalable web and mobile applications with modern technology stacks.",
     siteName: "Koushik M Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Koushik M — Full Stack Developer",
+        alt: "Koushik M — Full Stack & Mobile Developer",
       },
     ],
   },
@@ -45,11 +51,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Koushik M — Full Stack & Mobile Developer",
     description: "Co-Founder of Grow AI Tech. Building scalable digital products.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -59,8 +66,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "your-google-verification-code",
   },
+  applicationName: "Koushik M Portfolio",
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -86,22 +95,45 @@ export default function RootLayout({
               "@type": "Person",
               name: "Koushik M",
               url: "https://mkoushik.me",
+              image: "https://mkoushik.me/opengraph-image",
+              description: "Co-Founder of Grow AI Tech, specializing in building high-performance, scalable web and mobile applications using modern technologies.",
               sameAs: [
                 "https://linkedin.com/in/koushikm",
                 "https://github.com/koushikm",
+                "https://wa.me/917339217119"
               ],
               jobTitle: "Co-Founder & Full Stack Developer",
               worksFor: {
                 "@type": "Organization",
                 name: "Grow AI Tech",
                 url: "https://growaitech.com",
+                logo: "https://growaitech.com/logo.png"
               },
+              email: "koushikkaalai123@gmail.com",
+              telephone: "+917339217119",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Salem",
                 addressRegion: "Tamil Nadu",
                 addressCountry: "IN",
               },
+              knowsAbout: [
+                "React JS",
+                "Next JS",
+                "Spring Boot",
+                "React Native",
+                "Flutter",
+                "Firebase",
+                "MySQL",
+                "PostgreSQL",
+                "Supabase",
+                "Java",
+                "TypeScript",
+                "Full Stack Development",
+                "Mobile App Development",
+                "UI/UX Thinking",
+                "Software Architecture"
+              ]
             }),
           }}
         />
