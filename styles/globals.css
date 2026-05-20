@@ -25,6 +25,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
@@ -216,7 +217,7 @@
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #10b981, #3b82f6, #059669);
+  background: linear-gradient(90deg, #10b981, #34d399, #059669);
   z-index: 9999;
   transition: width 0.1s linear;
 }

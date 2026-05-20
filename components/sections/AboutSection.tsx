@@ -56,7 +56,7 @@ export default function AboutSection() {
           </span>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-start">
           {/* Left: Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
